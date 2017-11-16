@@ -1,19 +1,19 @@
 function addTable() {
-    var table = `<div class="column">
-        <div class="col-md-4" >
-        <label>表名称</label>
-        <input type="text" class="form-control"  name="tablenames" placeholder="Enter test_table">
-        </div>
-        <div class="col-md-4" >
-        <label>模型名称</label>
-        <input type="text" class="form-control"  name="tablemodels" placeholder="Enter TestTable">
-        </div>
-        <div class="col-md-4" >
-        <button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>
-        <button type="button" class="btn btn-danger" onclick="rmTable(this)" style="margin-top: 25px">删除</button>
-        </div>
-        </div>`;
-
+    var table = 
+`<div class="column">
+	<div class="col-md-4" >
+		<label>表名称</label>
+		<input type="text" class="form-control" name="tablenames" placeholder="Enter test_table">
+	</div>
+	<div class="col-md-4" >
+		<label>模型名称</label>
+		<input type="text" class="form-control"  name="tablemodels" placeholder="Enter TestTable">
+	</div>
+	<div class="col-md-4" >
+		<button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>
+		<button type="button" class="btn btn-danger" onclick="rmTable(this)" style="margin-top: 25px">删除</button>
+	</div>
+</div>`;
     $('#tables').append(table);
 }
 
@@ -24,18 +24,9 @@ function rmTable(table) {
     } else {
         alert("table不得少于一个！！")
     }
-
 }
 
 function gen() {
-    // var inputs = document.getElementsByTagName("input");
-    // for (var i = 0; i < inputs.length; i++) {
-    //     if (inputs[i].value == "" || inputs[i].value == null) {
-    //         alert("信息输入不全");
-    //         return false;
-    //     }
-    // }
-
     $('input').each(function (i) {
         var text = $(this).val();
         if (text == "") {
@@ -43,12 +34,11 @@ function gen() {
             return false;
         }
     });
-
     $.ajax({
         type: 'post',
-        url: '/gen',
+        url: 'mybatis/generator/gen',
         dataType: 'json',
-        timeout: 3000, //超时时间设置，单位毫秒
+        timeout: 3000, // 超时时间设置，单位毫秒
         data: $('#mbg').serialize(),
         success: function (data) {
             if (data.code == "00") {
@@ -67,13 +57,11 @@ function gen() {
 function saveConf() {
     var data = JSON.stringify($('#mbg').serialize());
     var key = $('#confname').val();
-
     localStorage.setItem(key, data);
     location.reload();
 }
 
 function readConf() {
-//      <li><a href="#"><i class="fa fa-circle-o"></i>Conf 1</a></li>
     var storage = window.localStorage;
     var menu = '';
     for (var i = 0, len = storage.length; i < len; i++) {
@@ -99,7 +87,6 @@ function writeconf(ob) {
 }
 
 function clearconf() {
-
     localStorage.clear();
     alert("清除成功!");
     location.reload();
