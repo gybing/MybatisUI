@@ -17,43 +17,46 @@ function addTable() {
     $('#tables').append(table);
 }
 
+//动态创建表格
 function rmTable(table) {
     var length = $('#tables').children().length;
     if (length > 1) {
         $(table).parent().parent().remove();
     } else {
-        alert("table不得少于一个！！")
+        $('#alertModal').modal({backdrop:"static"}).find(".modal-body").text("table不得少于一个!");
     }
 }
 
-function gen() {
+//代码生成器
+function generator() {
     $('input').each(function (i) {
         var text = $(this).val();
         if (text == "") {
-            alert("信息输入不全");
+            $('#alertModal').modal({backdrop:"static"}).find(".modal-body").text("信息输入不全!");
             return false;
         }
     });
     $.ajax({
         type: 'post',
-        url: 'mybatis/generator/gen',
+        url: '/mybatis/index/generator',
         dataType: 'json',
         timeout: 3000, // 超时时间设置，单位毫秒
         data: $('#mbg').serialize(),
         success: function (data) {
             if (data.code == "00") {
-                window.open('result/mbg.zip')
+                window.open('result/mybatisUI.zip')
             } else if (data.code == "01") {
-                alert("01: 数据库连接异常! ");
+                $('#alertModal').modal({backdrop:"static"}).find(".modal-body").text("数据库连接异常!");
             }
         },
         error: function (data) {
-            alert("请检查配置信息是否有误!");
+            $('#alertModal').modal({backdrop:"static"}).find(".modal-body").text("请检查配置信息是否有误!");
         }
 
     });
 }
 
+//保存配置
 function saveConf() {
     var data = JSON.stringify($('#mbg').serialize());
     var key = $('#confname').val();
@@ -61,6 +64,7 @@ function saveConf() {
     location.reload();
 }
 
+//读取配置
 function readConf() {
     var storage = window.localStorage;
     var menu = '';
@@ -71,6 +75,7 @@ function readConf() {
     $('#menu').append(menu);
 }
 
+//初始化填写配置
 function writeconf(ob) {
     var index = $(ob).index();
     var key = $(ob).eq(index).text();
@@ -86,8 +91,9 @@ function writeconf(ob) {
     }
 }
 
+//清除配置
 function clearconf() {
     localStorage.clear();
-    alert("清除成功!");
+    $('#alertModal').modal({backdrop:"static"}).find(".modal-body").text("清除成功!");
     location.reload();
 }

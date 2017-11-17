@@ -24,13 +24,13 @@ public class IndexController {
 
 	@Autowired
 	public GenService genService;
-	
+
 	@RequestMapping("/")
 	public String index() {
 		return "index";
 	}
 
-	@RequestMapping("/gen")
+	@RequestMapping("/generator")
 	@ResponseBody
 	public String generator(HttpServletRequest request) {
 		String path = request.getContextPath();

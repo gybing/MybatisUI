@@ -74,14 +74,12 @@
               <h3 class="box-title">Quick Generator</h3>
             <!-- form start -->
             <form role="form" id="mbg">
-            
                 <div class="form-group">
                   <div class="col-md-12" >
                       <label>主机名或IP地址 url</label>
                       <input type="text" class="form-control" id="ip" name="ip" placeholder="Enter IP">
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="column">
                     <div class="col-md-6" >
@@ -106,7 +104,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="column">
                     <div class="col-md-12" >
@@ -115,7 +112,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="column">
                     <div class="col-md-12" >
@@ -124,7 +120,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="column">
                     <div class="col-md-12" >
@@ -133,7 +128,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group" id="tables">
                   <div class="column">
                     <div class="col-md-4" >
@@ -150,34 +144,48 @@
                     </div>
                  </div>
                 </div>
-
               <div class="box-footer">
-                <button type="button" class="btn btn-primary" onclick="gen()">生成</button>
+                <button type="button" class="btn btn-primary" onclick="generator()">生成</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">保存配置</button>
                   <button type="button" class="btn btn-danger" onclick="clearconf()">清除配置</button>
               </div>
             </form>
-
-                <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">输入配置名称 Conf Name</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text" id="confname" class="form-control"  value="conf_name">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="saveConf()">Save</button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div>
-
+            <!-- 模态输入框 -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">输入配置名称 Conf Name</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="confname" class="form-control"  value="conf_name">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="saveConf()">Save</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- 模态消息框 -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="alertModal">
+			  <div class="modal-dialog modal-sm" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">消息提示</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p>出现异常，请检查配置。如果不行，请联系维护人员</p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
           </div>
-
         </div>
       </div>
     	  </div>
