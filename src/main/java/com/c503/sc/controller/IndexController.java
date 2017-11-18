@@ -1,14 +1,14 @@
 package com.c503.sc.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.c503.sc.service.GenService;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
+import com.alibaba.fastjson.JSONObject;
+import com.c503.sc.service.GenService;
 
 /**
  * 
@@ -19,25 +19,29 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/generator")
 public class IndexController {
 
 	@Autowired
 	public GenService genService;
 
-	@RequestMapping("/")
-	public String index() {
-		return "index";
-	}
-
-	@RequestMapping("/generator")
+	/**
+	 * 
+	 * @Title: generator <br/>
+	 * @Description: TODO(这里用一句话描述这个方法的作用) <br/>
+	 * @param @param request
+	 * @param @return    设定文件 <br/>
+	 * @return String    返回类型 <br/>
+	 * @throws
+	 */
+	@RequestMapping("/code")
 	@ResponseBody
 	public String generator(HttpServletRequest request) {
 		String path = request.getContextPath();
 		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path
 				+ "/";
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("code", genService.genCode(request));
+		jsonObject.put("code", GenService.genCode(request));
 		jsonObject.put("basepath", basePath);
 		return jsonObject.toJSONString();
 	}
