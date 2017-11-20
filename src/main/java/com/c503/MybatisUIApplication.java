@@ -14,14 +14,14 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  *
  */
 @SpringBootApplication
-public class GeneratorApplication extends SpringBootServletInitializer {
+public class MybatisUIApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(GeneratorApplication.class);
+		return application.sources(MybatisUIApplication.class);
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(GeneratorApplication.class, args);
+		SpringApplication.run(MybatisUIApplication.class, args);
 	}
 }

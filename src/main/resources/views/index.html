@@ -1,204 +1,238 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MyBatisUI代码生成器</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="css/AdminLTE.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="css/skins/_all-skins.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MyBatisUI代码生成器</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+	<link rel="stylesheet" href="css/AdminLTE.css">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="css/skins/_all-skins.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body class="hold-transition skin-blue sidebar-mini" onload="readConf()">
 <div class="wrapper">
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>MBUI</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>MyBatisUI</b></span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i><span>参数配置</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul id="menu" class="treeview-menu">
-          <!-- 动态添加配置消息 -->
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </aside>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-    </section>
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- general form elements -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">Quick Generator</h3>
-            <!-- form start -->
-            <form role="form" id="mbg">
-                <div class="form-group">
-                  <div class="col-md-12" >
-                      <label>主机名或IP地址 url</label>
-                      <input type="text" class="form-control" id="ip" name="ip" placeholder="Enter IP">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="column">
-                    <div class="col-md-6" >
-                      <label>数据库</label>
-                      <input type="text" class="form-control" id="db" name="db" placeholder="Enter DB">
-                    </div>
-                    <div class="col-md-6" >
-                      <label>端口</label>
-                      <input type="text" class="form-control" id="port" name="port" placeholder="Enter Port">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="column">
-                    <div class="col-md-6" >
-                      <label>用户名</label>
-                      <input type="text" class="form-control" id="username" name="username" placeholder="Enter UserName">
-                    </div>
-                    <div class="col-md-6" >
-                      <label>密码</label>
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="column">
-                    <div class="col-md-12" >
-                      <label>生成模型的包名</label>
-                      <input type="text" class="form-control" id="modelpackagename" name="modelpackagename" placeholder="Enter Model PackageName">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="column">
-                    <div class="col-md-12" >
-                      <label>生成DAO的包名</label>
-                      <input type="text" class="form-control" id="daopackagename" name="daopackagename" placeholder="Enter Dao PackageName">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="column">
-                    <div class="col-md-12" >
-                      <label>生成映射文件的位置</label>
-                      <input type="text" class="form-control" id="mapperpath" name="mapperpath" placeholder="Enter Mapper Path">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group" id="tables">
-                  <div class="column">
-                    <div class="col-md-4" >
-                      <label>表名称</label>
-                      <input type="text" class="form-control"  name="tablenames" placeholder="Enter test_table">
-                    </div>
-                    <div class="col-md-4" >
-                      <label>模型名称</label>
-                      <input type="text" class="form-control"  name="tablemodels" placeholder="Enter TestTable">
-                    </div>
-                    <div class="col-md-4" >
-                        <button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>
-                        <button type="button" class="btn btn-danger" onclick="rmTable(this)" style="margin-top: 25px">删除</button>
-                    </div>
-                 </div>
-                </div>
-              <div class="box-footer">
-              	  <button type="button" class="btn btn-success" onclick="generator()">生成</button>
-                	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">保存配置</button>
-                  <button type="button" class="btn btn-danger" onclick="clearconf()">清除配置</button>
-              </div>
-            </form>
-            <!-- 模态输入框 -->
-            <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">输入配置名称</h4>
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>MBUI</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>MyBatisUI</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+	            <li class="treeview">
+		            <a href="#">
+						<i class="fa fa-dashboard"></i>
+						<span>参数配置</span>
+		            	<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+		            </a>
+					<ul id="menu" class="treeview-menu">
+					    <!-- 动态添加配置消息 -->
+					</ul>
+				</li>
+            </ul>
+        </section>
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="font-family: '微软雅黑'">MyBatis代码生成器</h3>
+                            <!-- form start -->
+                            <form role="form" id="mbg">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label>数据库IP地址</label>
+                                        <input type="text" class="form-control" id="ip" name="ip" placeholder="请输入IP地址">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>数据库类型</label>
+                                        <select class="form-control" id="type" name="type">
+                                            <option value="mysql" selected>mysql</option>
+                                            <option value="oracle">oracle</option>
+                                            <option value="postgresql">PostgreSQL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="column">
+                                        <div class="col-md-6">
+                                            <label>数据库名称</label>
+                                            <input type="text" class="form-control" id="db" name="db" placeholder="请输入数据库名称">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>数据库端口</label>
+                                            <input type="text" class="form-control" id="port" name="port" placeholder="请输入数据库端口号">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="column">
+                                        <div class="col-md-6">
+                                            <label>用户名</label>
+                                            <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>密码</label>
+                                            <input type="password" class="form-control" id="passWord" name="passWord" placeholder="请输入密码">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="column">
+                                        <div class="col-md-12">
+                                            <label>生成Entity文件的包名</label>
+                                            <input type="text" class="form-control" id="modelPackageName" name="modelPackageName" placeholder="请输入实体包名">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="column">
+                                        <div class="col-md-12">
+                                            <label>生成Dao文件的包名</label>
+                                            <input type="text" class="form-control" id="daoPackageName" name="daoPackageName" placeholder="请输入dao层包名">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="column">
+                                        <div class="col-md-12">
+                                            <label>生成mapper文件的包名</label>
+                                            <input type="text" class="form-control" id="mapperPath" name="mapperPath" placeholder="请输入mapper.xml文件包名">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="tables">
+                                    <div class="column">
+                                        <div class="col-md-4">
+                                            <label>表名称</label>
+                                            <input type="text" class="form-control" name="tableNames" placeholder="请输入表明">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>实体名称</label>
+                                            <input type="text" class="form-control" name="tableModels" placeholder="表明对应的实体名称">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>
+                                            <button type="button" class="btn btn-danger" onclick="removeTable(this)" style="margin-top: 25px">删除表</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-success" onclick="generator()">生成代码</button>
+                                    <button type="button" class="btn btn-info" onclick="linkTest()">连接测试</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">保存配置</button>
+                                    <button type="button" class="btn btn-danger" onclick="clearConfirm()">清除配置</button>
+                                </div>
+                            </form>
+                            <!-- 模态输入框 -->
+                            <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">输入配置名称</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="text" id="confname" class="form-control" value="态势管理_01">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" onclick="saveConf()">保存</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- 模态消息框 -->
+                            <div class="modal fade" tabindex="-1" role="dialog" id="alertModal">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">消息提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>出现异常，请检查配置。如果不行，请联系维护人员</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- 模态消息框 -->
+                            <div class="modal fade" tabindex="-1" role="dialog" id="confirmModal">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">消息提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>你确定删除基本配置信息吗？<br/>删除就没有了哦。</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        	<button type="button" class="btn btn-primary" onclick="clearConf()">确定</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
                         </div>
-                        <div class="modal-body">
-                            <input type="text" id="confname" class="form-control"  value="态势管理_01">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="saveConf()">Save</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
+                    </div>
+                </div>
             </div>
-            <!-- 模态消息框 -->
-            <div class="modal fade" tabindex="-1" role="dialog" id="alertModal">
-			  <div class="modal-dialog modal-sm" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title">消息提示</h4>
-			      </div>
-			      <div class="modal-body">
-			        <p>出现异常，请检查配置。如果不行，请联系维护人员</p>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-			      </div>
-			    </div><!-- /.modal-content -->
-			  </div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-          </div>
-        </div>
-      </div>
-    	  </div>
-    </section>
-  </div>
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.0
+        </section>
     </div>
-    <strong><a href="https://github.com/liumingmusic">https://github.com/liumingmusic</a></strong>
-  </footer>
-  <div class="control-sidebar-bg"></div>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong><a href="http://172.25.1.47:8080/XGMH">Copyright © 2017-2018 XGMH All rights reserved.</a></strong>
+    </footer>
+    <div class="control-sidebar-bg"></div>
 </div>
 
 <!-- jQuery 2.2.3 -->
@@ -208,6 +242,6 @@
 <!-- AdminLTE App -->
 <script src="js/app.min.js"></script>
 <!-- Business js -->
-<script src="js/biz.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
